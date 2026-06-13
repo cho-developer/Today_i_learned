@@ -1,0 +1,75 @@
+1..왜; fixed size array 는 메모리 낭비 or 부족할수 ㅇ // int score[50] >> 49보다 더 넣고 싶을때 못함.
+
+2. malloc은
+void형 포인타 : 어디 자료형도 될수 있음.but casting해줘야함.
+
+3. malloc실패시 * 에는 NULL이 들어감.so * ㅇ == NULL 해주기 // malloc할당 실패시  종료하기 
+
+4. free 룰
+
+	4 - 1 free 한번씩 해줘야함
+
+	4 - 2 free the original pointer
+
+	4 - 3 (필수 x) but 명시적으로 free하고 null넣기
+
+	4 - 4 never use after free
+
+	4 - 5 free 하고 NULL 넣기 >> > dangling pointer, dobule free 예방 가능  // memory leak 
+	++ dangling pointer : use after free
+
+
+5. calloc으로도 할당 가능.
+
+
+6. 전체 cycle 요약
+
+allocate
+
+check
+
+use
+
+free
+
+
+7.realloc: re - allocate memory(크기 변경, 데이터 보존)
+
+	7 - 1 구성 : realloc(크기를 변경하고 싶은 데이터의 시작 주소, resized_size);
+
+	7-2 특징:
+	   • Makes the block bigger(or smaller)
+	   • Preserves existing data
+
+
+	   makes an existing malloc / calloc pointer
+	   • Resizes to new_size bytes
+	   • Returns pointer to resized block(may be a DIFFERENT address)
+	   • Copies old data to the new location
+	   • New bytes(if bigger) are uninitialized
+	   • Returns NULL if resize fails
+	   •(old block is still valid!)
+	   • Special case:
+     	realloc(NULL, size) == malloc(size)
+
+	7-3 temp는 realloc시 필수.
+
+	tmp 포인터가 필수인 이유 : 만약 재할당에 실패하면 realloc은 NULL을 반환.
+	이때 임시 변수(temp)를 쓰지 않고 arr = realloc(arr, ...) 전략을 쓰면, arr에 NULL이 덮어씌어짐.그렇게 되면 기존에 들고 있던 원래 메모리 주소를 영영 잃어버림. 4 - 1번에서 경계한 Memory Leak(메모리 누수)이 강제로 발생.
+	따라서  temp는 필수.
+
+	e.g.,)
+			/* Need more space: grow to 5 elements */
+			int* temp = (int*)realloc(arr,
+				5 * sizeof(int));
+		if (!temp) {
+			free(arr); return 1;
+		}
+		arr = temp; /* update pointer */
+
+
+
+
+
+
+

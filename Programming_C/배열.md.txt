@@ -1,0 +1,133 @@
+
+0. 배열 != string.  배열은 int, float, char 등 string(문자열)은 char.뒤에 '\0'으로 끝남.
+0. 배열 이름 = 첫번째 원소의 주소.
+	e.g., ) int a[5];
+	a == &a[0];
+	*a == a[0]
+
+
+
+1.char a[N] //여기에 숫자 입력 가능. (단, 아스키 코드로 들어가 있으므로 -'0'을 해야 입력한 숫자가 그대로 나옴.) 
+2.int result[26] = { -1 } // 이러면 25번 인덱스에만 -1이 들어가고 0~24는 0이 들어감. -1를 0~25까지 넣고 싶으면 for문 이용
+2-1 Zero - initialize all :
+int c[5] = { 0 }; /* all zeros */
+
+3.scanf형식인  %s는 문자 1개(char) 가 아니라 문자열(char 배열)에 줘야 함. 그리고 "str space" 이렇게 줘버리면 "str"만 읽음. 
+
+4.N + 1의 법칙: C에선 문자열을 담을 배열을 만들 때는 항상(저장하고 싶은 최대 글자 수) + 1의 크기로 선언해야 함.
+	char s[21];          // 최대 20글자 문자열 저장 가능 (마지막에 \0들어갈 거 남겨놔야함!)문자열 끝에 \0이 들어갈 자리를 비워두는 것은 C의 철칙.
+4-1.scanf("%20s", s);    // 공백 전까지 최대 20글자만 읽고, 끝에 '\0' 자동 추가<<이때 '\0'은 버퍼에 남는거임.
+
+5.scanf("%s", arr); 나 fgets(arr, sizeof(arr), stdin); 같은 함수들은 입력받은 문자열의 끝에 자동으로 \0을 붙임.하지만 그 뒷부분의 메모리까지 건들XX.
+이때 \n을 저장하는 방식이 다름. 
+
+	5-1	scanf("%s", arr): %s는 공백(스페이스)or 줄바꿈 만나면  "여기서 단어 끝이구나" 판단.읽기를 멈춤. 만약 \n 하면 \n은 버퍼에 남음.['H', 'i', '\0', ...]>>arr에는 \n이 없음.
+	    fgets(arr, sizeof(arr), stdin): 줄바꿈(\n)을 만나면 "아, 여기까지가 한 줄이구나!" 하고 \n까지 배열 a에 쏙 집어넣은 뒤 멈춤.['H', 'i', '\n', '\0', ...]>> arr에는 \n이 있음.
+		그래서 fgets(배열, 배열의 크기, stdin)은 배열을 그대로 입력(공백, \n)하므로 \n 도 자동으로 해줌.
+
+
+6. fgets 는 주소값 반환, scanf는 변수에 할당한 개수 반환.
+
++while(fgets(a,100,stdin)!=NULL){printf(a) }//a를 입력하고 (by fgets) 모든 a를 출력.
+  읽을 데이터가 있을 때 : fgets는 input 배열의 시작 주소를 반환.주소값은 0이 아니므로 != NULL 조건이 참(True)이 되어 반복문이 실행.
+  파일의 끝(EOF)에 도달했을 때 : 더 이상 읽을 줄이 없으면 fgets는 NULL을 반환합니다.그러면 NULL != NULL은 거짓(False)이 되어 반복문이 즉시 종료.
+
+<->scanf()는 주소값을 반환하지 않음. scanf() 함수는 입력받으려는 데이터의 타입이 정수(% d)이든 문자(% c)이든 상관없이 "몇 개의 값을 성공적으로 변수에 넣었는가" 반환.
+	e.g.,)
+	while (scanf("%s", arr) == 1) 
+
+
+
+7.컴퓨터는 어차피 문자를 아스키 코드로 읽기 때문에 charinput= a;
+  int N=input-'a' 하면 N에 0이 들어감
+
+8. string= char array + Null Terminator // C에선 문자열을 담을 배열을 만들 때는 항상(저장하고 싶은 최대 글자 수) + 1의 크기로 선언해야 함.
+한 문자 문자 줄때는 '', 문자열 줄때는 " " 으로 가능.
+
+e.g., ) char greeting[6] = "Hello"; // 이렇게 한번에 문자열 주기 가능.
+
+9. string 초기화법들
+	9 - 1 char s1[] = "Hello"; >> 사이즈는 모르는데 들어갈 것들은 알때 useful! // 컴터에서 지 알아서 문자열+1 만큼 사이즈 넣음 . so s에 6들어감.
+	9 - 2 char s2[6] = { 'H', 'e','l','l','o','\0' } //char by char
+	9 - 3 char s3[20] = ""// 0인덱스에 \0 들어감. 
+
+10. fgets(str, size, stdin)
+	
+	10 - 1
+	char name[50]
+	fgets(name., 50, stdin) // 이렇게도 가능. 
+	fgets(name, sizeof(name), stdin) // 50보단 sizeof 쓰는게 훨 나음.
+
+	10 - 2 fgets 는 5 - 1 에 의해 '\n'도 자동으로 저장함, so 이거 없애고 싶으면 
+	name[strlen(name) - 1] = '\0'; 
+
+11. strlen, sizeof >> #include<string.h>
+	strleng : str의 '\0' 나올때 까지의 길이를 읽음 .
+	sizeof : str의 선언된 길이를 읽음.
+
+	e.g., ) char a[50];
+	sizeof(a) = 50;
+	char a[50]="Hello";
+	strlen(a) = 5;
+
+
+
+12다른 함수에서 바꿔도 안바뀌는 인자들
+	12-1.기본 자료형
+	배열이 아닌 일반 변수(int, float, char 등)를 그대로 전달하면, 값이 복사되어 전달
+	12-2. const
+	12-3.String Literal
+
+13. 2차원 배열
+ a[n][m] : nXm matrix.
+e.g., )
+a[4][3]
+= 4 5 8
+1 60 1
+9 16 4
+7 8 19 >> 에서 60 은 a[1][1] 이고 5는 a[0][1] 임.
+
+	13 - 1 a[n][m] scanf 받기
+	for (int i = 0; i < n; i++) {
+
+		for (int j = 0; j < m; j++) {
+			scanf("%d", &a[i][j]);
+		}
+
+	}
+	13-2int a[3][4] :
+	a[i] 는 이 행렬의 i번쨰 요소의 주소를 담는게 아니라 i번째 행의 주소를 담음 .//즉 a[2]는 정확히 3번째 행(인덱스 2)의 시작 주소를 가리킴. *(a+2)은 행렬의 0행,3열의 요소가 아니라 3행의 시작 주소임.
+
+	so.
+	13 - 1 char name[20][30];
+	에 각행에 문자열을 추가 하고 싶을때 이중 for문 사용안하고 단일 for문 사용 해도 됨.(name[i]는 각행의 시작 주소이므로. )
+	e.g.,)
+	char name[20][30];
+	
+	for (int i = 0; i < 20; i++) {
+		scanf("%s", name[i]); //각 행마다 문자배열 들어감. name[i]는 i번째 행(row)의 시작 주소, 즉 &name[i][0]과 완전히 동일한 의미
+	}
+	
+	13-2	
+	*(*(a+2)+n) >>>첫번째 괄호 *(a+2) 로 a의 3행 주소 가고 +n을 해줌으로 써 n+1번째 열의 주소로 이동. 두번째 *로 마침내 a의 3행, n+1열 요소를 지목.
+	
+	
+	13-3
+	배열 포인터를 선언할떄 한행의 크기에 해당하는 수([4])만큼 할당 해야함.
+	int (*ap)[4] = a; >> 이때 비로소 ap가 a랑 똑같아짐. 
+
+14. Dynamic 2D array : use 이중 포인터
+
+e.g., )
+
+int rows, cols, i, j;
+printf("Rows Cols: ");
+scanf("%d %d", &rows, &cols);
+/* Step 1: array of row pointers */
+int** mat = (int**)malloc(rows * sizeof(int*)); // **mat로 행을 가르키는 포인터 생성 >> *(mat+i) (=mat[i]) 는 이제 i번째 행을 가르키는 포인터.
+if (!mat) return 1;
+/* Step 2: each row is a separate array */
+for (i = 0; i < rows; i++) {
+	mat[i] = (int*)calloc(cols, sizeof(int));// row 포인터에 메모리를 할당해 col을 저장할수 있는 메모리 할당.
+	if (!mat[i]) return 1;
+}
