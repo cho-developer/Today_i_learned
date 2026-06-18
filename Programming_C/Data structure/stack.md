@@ -1,8 +1,9 @@
-0. stack 관련 용어
+0.  관련 용어
  0-1 push: stack 에 데이터 넣기
  0-2 pop : stack의 가장 상단의 데이터를 뺴는거
  0-3 stack:  배열을 세로로 세운게 stack임. 
-
+ 0-4 stack은 last in first out
+ 
 1. stack 구현을 위한 주요 함수 
  1-1 데이터를 스택에 넣는 함수(push 함수)
  1-2 데이터를 스택에서 빼는 함수(pop 함수)
