@@ -17,7 +17,7 @@ data : 전역 변수, static variables = const
 text : 프로그램으로 쓴것들. char* p[] >> read only// letter literal 
 
 
-3..포인터로 문자열 리터럴을 선언하면, 해당 문자열의 데이터는 읽기 전용 메모리 영역에 저장.//so 이걸 수정하려시도 하면 segment error.
+3. 포인터로 문자열 리터럴을 선언하면, 해당 문자열의 데이터는 읽기 전용 메모리 영역에 저장.//so 이걸 수정하려시도 하면 segment error.
 
 4. arr[size] = *(arr + size) // 완전 똑같. 즉 arr[size]를 만나면 컴파일러는 *(arr+size)로 처리함 >>>>(배열)arr의 시작 주소에서 size만큼 이동해서 *그곳의 데이터를 읽어라 
  
