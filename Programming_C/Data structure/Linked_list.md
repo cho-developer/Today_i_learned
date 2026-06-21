@@ -4,7 +4,7 @@
   Double Linked List
 
 
-![alt text](list_type.png)
+![alt text](list_type-1.png)
 
 
 <Singly Linked List>
