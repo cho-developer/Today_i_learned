@@ -1,7 +1,11 @@
-0. Linked list의 종류
-  Singly linked List
-  Circular Linked List 
-  Double Linked List
+0. 
+    0-1 Linked list의 종류:
+    Singly linked List
+    Circular Linked List 
+    Double Linked List
+
+    0-2 list의 특징:
+    배열과 달리 어디가 첫번째 원소(노드) 인지 모름. so. 첫번째 노드의 주소를 저장하는 head가 필요.
 
 
 ![alt text](list_type.png)
@@ -12,7 +16,8 @@
     1-1: 일방향 으로 노드 연결됨.
     1-2: 첫번쨰 노드: Head. 
          끝 : NULL
-    1-3: 노드 새로 추가하면 Header 파일의 포인터가 추가된 노드를 가르키게됨.    
+    1-3: 노드 새로 추가하면 Header 파일의 포인터가 추가된 노드를 가르키게됨.   
+   
  e.g.,)
 
  typedef struct ListNode{

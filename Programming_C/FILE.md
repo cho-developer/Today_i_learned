@@ -89,7 +89,7 @@ while ((c = fgetc(fp)) != EOF) {
 
  9-1쓰기 형식 : fwrite(a, sizeof(int), 5, fp);
  9-2읽기 형식 : fread(b, sizeof(int), 5, fp);
-
+//
 
 
 
