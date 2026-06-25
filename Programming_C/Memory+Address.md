@@ -8,11 +8,11 @@ e.g.) unsigned int x= 0x12345678;
 
 2. memeory layout : 4계층
 
-stack :정적으로 메모리 할당된것들. 지역 변수, 매개변수 functuoncall frames
+stack :정적으로 메모리 할당된것들. 지역 변수, 매개변수 functuoncall frames//{} 안에서만 생존.//OS가 메모리 할당하고 제거.
 
-heap : 동적으로 메모리 할당 된것들. malloc / free //큰 파일 받고 쓸대 사이즈 모를때 
+heap : 동적으로 메모리 할당 된것들. malloc / free //큰 파일 받고 쓸대 사이즈 모를때 //개발자(너)가 메모리 할당하고 제거.
 
-data : 전역 변수, static variables = const
+data : 전역 변수, static variables = const//프로그램이 실행되고 종료될때까지 생존//OS가 메모리 할당하고 제거.
 
 text : 프로그램으로 쓴것들. char* p[] >> read only// letter literal 
 

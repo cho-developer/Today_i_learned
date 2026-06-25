@@ -5,7 +5,7 @@
 0. 포인터 앞의 자료형은 포인터 변수가 담고 있는 ADDRESS로 가서
 	데이터를 몇 바이트 단위로 끊어서 읽어야 하는지를 알려주는 것이 바로 포인터 앞의 자료형
 
-# Pointer
+<Pointer>
 
 1. 포인터의 종류
  1-1 int * p; // int 포인터
@@ -171,7 +171,7 @@ e.g.,)
 
 17. 
 
-# Pointer to Pointer
+ <Pointer to Pointer>
 e.g.,) int x=42;
 		int y= 92;
 		int *p= &x;
