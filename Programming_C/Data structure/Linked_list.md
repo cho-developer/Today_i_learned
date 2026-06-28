@@ -78,6 +78,21 @@ void printf_list(ListNode*head){
     
 }
 
+void travasal_list(ListNode*head){
+
+curNode=head;
+while(curNode!=NULL){
+    //노드 사용
+    curNode=curNode->next;
+
+} 
+
+
+}
+
+
+
+
 <Doubly Linked List>
  0. 
     0-1:Singly Linked List와 차이점
