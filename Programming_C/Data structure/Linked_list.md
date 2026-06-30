@@ -149,3 +149,26 @@ int main(int argc, const char* argv[]) {
 
 	return 0;
 }
+
+
+void delList(ListNode*head){
+
+    
+    ListNode *delnode=head;
+
+    while(head!=NULL){
+         head=head->next;
+
+        
+        free(delnode);
+       delnode=head;
+
+
+    }
+
+
+
+
+
+
+}
