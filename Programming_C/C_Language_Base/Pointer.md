@@ -186,4 +186,4 @@ e.g.,) int x=42;
 		*pp=&y; //now p points to y , not x
 
 
-
+1. 

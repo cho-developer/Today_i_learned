@@ -5,7 +5,7 @@
     Double Linked List
 
     0-2 list의 특징:
-    배열과 달리 어디가 첫번째 원소(노드) 인지 모름. so. 첫번째 노드의 주소를 저장하는 head가 필요.
+    배열과 달리 어디가 첫번째 원소(노드) 인지 모름. so. 첫번째 노드의 주소만 저장하는 head가 필요.
 
 
 ![alt text](list_type.png)
@@ -19,7 +19,7 @@
     1-3: 노드 새로 추가하면 Header 파일의 포인터가 추가된 노드를 가르키게됨.   
     1-4: 단일 연결 리스트에서 노드 추가의 시간 복잡도: O(1)
     1-5: 단일 연결 리스트에서 노드 순회의 시간 복잡도: 
-    O(N);
+    O(N); 
  e.g.,)
 
  typedef struct ListNode{
@@ -90,9 +90,43 @@ while(curNode!=NULL){
 
 }
 
+typedef struct node{
+
+    cahr * str;
+    struct node* next;
+
+}// 문자열 노드 
+
+void removestrnode(){
+
+    node* delnode;
+    while(head!=NULL){
+        delnode=head;
+        
+        free(delnode->str);
+        free(delnode);
 
 
+        head=head->next;
+    }
 
+void display_node(node* head){
+
+    if(head==NULL){
+        printf("NULL\n");
+        return;
+    }
+    else{
+        node*curnode=head;
+        while(curnode!=NULL){
+            printf("%d ",curnode->data);
+            curnode=curnode->next;
+        }
+    }
+
+}
+}
+ 
 <Doubly Linked List>
  0. 
     0-1:Singly Linked List와 차이점
@@ -117,6 +151,7 @@ void init_List(DListNode* phead) {
 	phead->rlink = phead;
 
 }
+
 
 void dinsert_first(DListNode* before, element val)
 {
@@ -171,4 +206,219 @@ void delList(ListNode*head){
 
 
 
+}
+
+
+
+void delnode(int target){
+    if(head==NULL){
+        printf("NULL");
+        return;
+
+
+
+    }
+
+
+
+    node* temp=head;
+    node*curnode=head;
+    
+
+    if(head->data==target){
+        temp=head;
+        head=head->next;
+        free(temp);
+        return;
+
+
+
+    }
+
+
+    
+
+    while(curnode->next!=NULL){
+        curnode=curnode->next;
+        if(curnode->data==target){
+
+            tmep->next=curnode->next;
+            
+           
+            free(curnode);
+            return;
+        }
+        temp=curnode;
+        
+
+    }
+      
+     
+}
+
+typedef struct Dnode{
+
+    int value;
+    struct Dnode * prev;
+    struct Dnode * next;
+
+
+}Dnode;
+
+void insert_Dnode_rear(int data){
+    Dnode*input = (Dnode*)malloc(sizeof(Dnode));
+    input->value=data;
+    
+    if(tail==NULL){
+        input->prev=head;
+        input->next=tail;
+        head=input;
+        tail=input;
+    }
+    else{
+        input->prev=tail;
+        tail->next=input;
+        input->next=NULL;
+        tail=input;
+        
+
+    }
+
+}
+
+
+int main (){
+
+     Dnode *head=NULL;
+    Dnode *tail=NULL;
+   
+
+
+    
+    return 0;
+}
+
+
+
+
+
+void del_spe_node(int val){
+    Dnode* curnode=head;
+    if(head==NULL){return;}
+
+    while(curnode!=NULL){
+        if(curnode->data==val){
+        curnode->prev->next=curnode->next;
+        curnode->next->prev=curnode->prev;
+        free(curnode);
+        return;}
+        curnode=curnode->next;
+    }
+
+
+
+
+}
+
+
+ int node_cnt(Dnode*head){
+
+    int cnt=0;
+    Dnode* circuit=head;
+    if(haed==NULL){return 0;}
+    while(circuit!=NULL){
+        cnt++;
+        circuit=circuit->next;
+
+
+    }
+
+
+
+
+    return cnt;
+ }
+
+void insert_Dnode_at_k(int val, int k){
+    
+    Dnode *indi=head;
+    Dnode *newnode =(Dnode*)malloc(sizeof(Dnode));
+    newnode->data=val;
+    if(head==NULL)// 노드가 아 예 없을때
+    {
+        head=newnode;
+        newnode->next=NULL;
+        newnode->prev=NULL;
+        return;
+    }
+
+     if(k==1)//전체 노드가 딱 1개 일때
+    {
+        newnode->next=head;
+        newnode->prev=NULL;
+        head->prev=newnode;
+        head=newnode;
+        return;
+    }
+
+
+    for(int i=0; i<k-1; i++){
+        if(indi==NULL){break;}
+        indi=indi->next;
+
+
+    }
+   
+    if(indi==NULL)//indi가 tail을 가르킨 경우.
+    {   
+
+        newnode->next=NULL;
+        newnode->prev=tail;
+        tail->next=newnode;
+        tial=newnode;
+
+        return;   
+    }
+    else{// 노드 사이에 노드 넣을때.
+        newnode->next=indi;
+        newnode->prev=indi->prev;
+        indi->prev->next=newnode;
+        indi->prev=newnode;
+        
+        return;
+
+
+    }
+
+
+}
+
+
+
+
+void inverse_Dnode(Dnode* head){
+    if(head==NULL){return;}
+    Dnode* tail=head;
+     
+    int cnt=1;
+    while(tail->next!=NULL){
+        cnt=cnt+1;
+        tail=tail->next;
+
+    }
+    if(cnt==1){return ;}
+
+    Dnode*curnode=head;
+    while(curnode!=NULL){
+        Dnode*tmpnode=curnode->next;
+
+        curnode->next=curnode->prev; 
+        curnode->prev=tmpnode;
+
+        curnode=curnode->prev;
+    }
+
+   
+    Dnode **xx=&head;
+    *xx=tail;
 }
