@@ -1,20 +1,26 @@
-0.  관련 용어
+0.  stack관련 
  0-1 push: stack 에 데이터 넣기
  0-2 pop : stack의 가장 상단의 데이터를 뺴는거
  0-3 stack:  배열을 세로로 세운게 stack임. 
- 0-4 stack은 last in first out
+ 0-4 stack은 LIFO: last in first out
+ 0-5 배열or연결 리스트로 stack을 구현
  
 1. stack 구현을 위한 주요 함수 
- 1-1 데이터를 스택에 넣는 함수(push 함수)
- 1-2 데이터를 스택에서 빼는 함수(pop 함수)
+ 1-1 데이터를 스택에 삽입하는 함수(push 함수)
+    1-1-1연결 리스트->>stack: 맨앞 삽입으로 push구현.
+
+ 1-2 데이터를 스택에서 삭제하는 함수(pop 함수)
+    1-2-1배열->>stack: 물리적인 삭제(진짜 삭제)가 아니라 논리적인 삭제로 pop.
+    1-2-2연결 리스트->>stack: 맨앞 삭제로 pop구현. 물리적인 삭제(진짜 삭제).
+
  1-3 스택이 꽉 차있는지 판단하는 함수
  1-4 스택이 비어 있는지 판단하는 함수
 
-e.g.,)
+e.g.,)배열->>stack
     #define SIZE 100
     typedef struct StackType {
         int arr[SIZE];
-        int top;// 항상 스택의 탑을 가르킬 녀석 필요
+        int top;// 항상 스택 데이터의 꼭대기를 가르킬 녀석 필요
     }StackType;
 
     void inti(StackType* s) {
