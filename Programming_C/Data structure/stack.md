@@ -1,4 +1,4 @@
-0.  stack관련 
+0.  stack
  0-1 push: stack 에 데이터 넣기
  0-2 pop : stack의 가장 상단의 데이터를 뺴는거
  0-3 stack:  배열을 세로로 세운게 stack임. 

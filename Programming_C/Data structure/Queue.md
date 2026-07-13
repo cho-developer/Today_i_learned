@@ -1,15 +1,16 @@
-0. 관련 용어
+0. Queue 
  0-1 enqueue: 데이터 삽입
  0-2 dequeue: 데이터 빼기
  0-3Queue는 stack과 반대로 first in first out (선착순 )
-
+ 0-4 배열 or 연결 리스트로 queue구현.
+ 0-5 배열->> Queue(circular queue 포함)의 dequeue는 물리적 삭제x. 논리적 삭제.
 1. Queue 구현을 위한 주요 함수
  1-1 데이터를 큐에 넣는 함수
  1-2 데이터를 큐에서 뺴는 함수
  1-3 큐가 꽉 차있는지 판단하는 함수
  1-4 큐가 비어 있는지 판단하는 함수
  
- e.g.,)
+ e.g.,)배열 ->>QUeue
  
 typedef struct Queue {
 
@@ -86,12 +87,12 @@ int dequeue(Queue* q) {
  전부다 deque하면 해당 Queue 는 더 이상 못씀. 해결법은 바로 circular Queue(선형 queue 를 동그랗게 만든거.)
 
 3. Circular Queue를 위한 정의
-    3-1 enqueue: (rear+1)% MAX_QUEUE_SIZE
-    3-2 dequeue: (front+1)% MAX_QUEUE_SIZE
+    3-1 enqueue: rear=(rear+1)% MAX_QUEUE_SIZE
+    3-2 dequeue: front=(front+1)% MAX_QUEUE_SIZE
     3-3 is_empty: front==rear
     3-4 is_full: (rear+1)% MAX_QUEUE_SIZE==front 
 
- e.g.,)
+ e.g.,)배열->>circular Queue
 #define MAX 3
 
 typedef struct Queue {
@@ -157,3 +158,53 @@ int dequeue(Queue* q) {
 
  } // 3-2 원형 queue의 dequeue
 
+#define MAX_SIZE_QUEUE 5
+
+typedef struct queue{
+	int *arr;
+	int front;
+	int rear;
+
+}queue;
+
+void init_queue(queue *q){
+	q->arr=(int*)malloc(sizeof(MAX_SIZE_QUEUE)*4);
+	q->front=q->rear=0;
+
+}
+
+
+void enqueue(queue *q,int val){
+
+		if((q->rear+1)%MAX_SIZE_QUEUE == q->front)
+			{printf("Queue is full");return;}
+
+		q->arr[q->rear]=val;
+
+		q->rear=(q->rear+1)%MAX_SIZE_QUEUE;
+
+
+}
+
+int  dequeue(queue *q){
+
+	if(q->front==q->rear){
+		printf("queue is empty"); return;
+	}
+	int idx=q->front;
+q->front=(q->front+1)% MAX_SIZE_QUEUE;
+
+	return q->arr[idx];
+}
+
+
+
+
+int main(){
+	queue q1;
+	init_queue(&q1);
+
+
+}
+
+ e.g.,)연결->>circular Queue// 맨뒤 삽입. 이중 포인터. head와 tail 필요.

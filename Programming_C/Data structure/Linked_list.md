@@ -1,11 +1,11 @@
-0. 
+0.   Linked_list
     0-1 Linked list의 종류:
     Singly linked List
     Circular Linked List 
     Double Linked List
 
     0-2 list의 특징:
-    배열과 달리 어디가 첫번째 원소(노드) 인지 모름. so. 첫번째 노드의 주소만 저장하는 head가 필요.
+    배열과 달리 어디가 첫번째 원소(노드) 인지 모름. so. 첫번째 노드의 주소만 저장하는 head와 마지막 주소 저장하는tail 필요.
 
 
 ![alt text](list_type.png)
@@ -15,7 +15,7 @@
  1. 특징   
     1-1: 일방향 으로 노드 연결됨.
     1-2: 시작 노드: Head. //head가 첫번째 노드의 주소를 저장.
-         끝 : NULL
+        
     1-3: 노드 새로 추가하면 Header 파일의 포인터가 추가된 노드를 가르키게됨.   
     1-4: 단일 연결 리스트에서 노드 추가의 시간 복잡도: O(1)
     1-5: 단일 연결 리스트에서 노드 순회의 시간 복잡도: 
