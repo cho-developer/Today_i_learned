@@ -37,7 +37,7 @@ strcat(buf, "Pts: ");
 4.strcmp(a,b) : compare .
 strncmp(a,b,n): compare first n chars only
 e.g)
-1)만약 a랑 b가 같으면 strcmp(a, b) = 0;
+1)만약 a랑 b가 같으면 strcmp(a, b) == 0;
 2)a < b 이면 strcmp(a, b) = < 0;
 3)a > b 이면 strcmp(a, b) = > 0;
 
@@ -49,7 +49,7 @@ if(strcmp(s,"Hello")==0) O.(compare contents.)
 
 
 
-5.strstr(s,sub) : s안에 sub 있는지 확인 .substring / char 의 위치(index)를 반환.없으면 NULL 반환.
+5.strstr(s,sub) : s안에 sub 있는지 확인 .substring / char 의 위치(index)를 반환.없으면 NULL 반환.//부분 문자열 찾을때 use.
 
 
 
@@ -103,6 +103,13 @@ e.g.,)
 
  b 는 iamthedestroyerandilikemango 됨.
 
+9.memcpy: 지정한 목적지 주소부터 해서 딱 요청한 바이트 수만큼만 덮어씀.//복사 범위에 포함되지 않는 부분: 원본 그대로 유지.
+    9-1 형식: memcpy(원본배열+바꿀 시작 인덱스, 넣을new문자열, 바꿀 문자수 )
+    9-2 e.g.,)
+    char str[20] = "ABC-0000-XYZ";
+
+   
+  memcpy(str + 4, "9999", 4);// str은 ABC-9999-XYZ
 
 # ctype.h
 
