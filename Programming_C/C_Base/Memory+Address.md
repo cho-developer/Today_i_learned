@@ -14,10 +14,11 @@ heap : 동적으로 메모리 할당 된것들. malloc / free //큰 파일 받�
 
 data : 전역 변수, static variables = const//프로그램이 실행되고 종료될때까지 생존//OS가 메모리 할당하고 제거.
 
-text : 프로그램으로 쓴것들. char* p[] >> read only// letter literal 
+text : 프로그램에서 정의한 상수+ 문자열 리터럴. >> read only//리터럴을 char* 가 가리킬 수 없음. 반드시 const char* 가 가리켜야함.(리터럴을 수정하는 괴랄한 짓을 컴파일 단에서 막을 수 있.)
 
 
-3. 포인터로 문자열 리터럴을 선언하면, 해당 문자열의 데이터는 읽기 전용 메모리 영역에 저장.//so 이걸 수정하려시도 하면 segment error.
+3. 포인터로 문자열 리터럴을 선언하면, 해당 문자열의 데이터는 읽기 전용 메모리 영역인 text영역에 저장.//so 이걸 수정하려시도 하면 segment error.
+  //char str[] = "hello"; //literal 아님. 그냥 char str[] = {'h', 'e', 'l', 'l', 'o', '\0'}; 임. 즉, 배열에 저장한 형태. 따라서 text영역에 저장되는게 아니므로 수정 가능.  
 
 4. arr[size] = *(arr + size) // 완전 똑같. 즉 arr[size]를 만나면 컴파일러는 *(arr+size)로 처리함 >>>>(배열)arr의 시작 주소에서 size만큼 이동해서 *그곳의 데이터를 읽어라 
  
